@@ -43,3 +43,4 @@ const UserSchema = new mongoose.Schema(
 
 //create user using schema abbove
 const User = mongoose.model("User", UserSchema);
+export default User;

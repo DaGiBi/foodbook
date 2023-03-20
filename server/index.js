@@ -15,14 +15,16 @@ import userRoutes from "./routes/user.js";
 import postRoutes from  "./routes/post.js";
 import { register } from "./controller/auth.js";
 import { verifyToken } from "./middleware/auth.js";
-import { createPost } from "./controller.posts.js";
+import { createPost } from "./controller/posts.js";
+import User from  "./models/User.js";
+import Post from  "./models/Post.js";
 
 
 
 /*configuration*/
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-dotenv.config;
+dotenv.config("./.env");
 const app = express();
 app.use(express.json());
 app.use(helmet());
@@ -54,8 +56,8 @@ app.post("/post", verifyToken, upload.single("picture"), createPost);
 
 // Routes
 app.use("/auth", authRoutes);
-app.user("/users", userRoutes);
-app.user("/posts", postRoutes);
+app.use("/users", userRoutes);
+app.use("/posts", postRoutes);
 
 
 /* MONGOOSE SETUP */
